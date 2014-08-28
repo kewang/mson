@@ -116,42 +116,23 @@ A product from Acme's catalog
 
 > **NOTE:** Optional is the default for a property. Use `required` for required properties.
 
+---
+
+## MSON Language Specification
+The rest of this document covers some advanced syntax examples. Refer to [MSON Language Specification][] for the complete MSON Grammar Reference.
+
 ## Quick Links
 
-- [Primitive types](#primitive-types)
-- [Composite Types](#composite-types)
+- [MSON Language Specification](MSON%20Specification.md)
 - [Objects & Arrays](#objects-arrays)
 - [Advanced Objects](#advanced-objects)
 - [Advanced Arrays](#advanced-arrays)
 - [Escaping](#escaping)
 - [Mutliline Description](#multiline-description)
 - [Variable Property Name](#variable-property-name)
-- [MSON Entity Definition](#mson-entity-definition)
+- [Type Definition](#type-definition)
 - [Referencing](#referencing)
 - [Mixins](#mixins)
-
-## Primitive types
-Following are the primitive data types of MSON entities:
-
-- bool (boolean)
-- number
-- string
-
-## Composite Types
-MSON entity types composed of one or more other types are 
-
-- array
-- object
-- one of
-
-    The _one of_ type represent a choice of types for an MSON entity value. The types are mutually exclusive. 
-
-#### MSON
-```
-- property (one of)
-    - (number)
-    - (string)
-```
 
 ## Objects & Arrays
 By default, a Markdown list item is considered to be an object property:
@@ -203,7 +184,7 @@ In this case, the type – `(array)` – can be omitted.
 ## Advanced Objects
 
 ### Non-uniform property
-A Property which value can be of different types is defined of the `one of` composite type:
+A Property which value can be of different types is defined of the `enum` compound type:
 
 #### JSON
 
@@ -220,7 +201,7 @@ A Property which value can be of different types is defined of the `one of` comp
 #### MSON
 
 ```
-- tag (one of)
+- tag (enum)
     - green (string)
     - (object)
         - tag_id: 1
@@ -229,7 +210,7 @@ A Property which value can be of different types is defined of the `one of` comp
 
 #### Rendered Markdown
 
-- tag (one of)
+- tag (enum)
     - green (string)
     - (object)
         - tag_id: 1
@@ -238,7 +219,7 @@ A Property which value can be of different types is defined of the `one of` comp
 ---
 
 ### Mutually exclusive properties
-By default all properties are optional and can be included in the object (any of). If there is a choice of available properties use the `One of` keyword:
+By default all properties are optional and can be included in the object (any of). If there is a choice of available properties use the `enum`:
 
 #### JSON
 ```json
@@ -254,7 +235,7 @@ By default all properties are optional and can be included in the object (any of
 #### MSON
 ```
 - a
-- One of
+- (enum)
     - b1
     - b2
 - c
@@ -263,7 +244,7 @@ By default all properties are optional and can be included in the object (any of
 #### Rendered Markdown
 
 - a
-- One of
+- (enum)
     - b1
     - b2
 - c
@@ -344,23 +325,7 @@ By default all properties are optional and can be included in the object (any of
 ---
 
 ## Escaping
-Markdown [code span][] element syntax (`` ` ` ``) is used to escape properties and literals when needed. The use of code span is optional unless needed.
-
-Element values and property names and values with _reserved characters_ or containing keywords MUST be escaped. 
-
-#### Reserved Characters
-
-`:`, `(`,`)`, `<`, `>`, `{`, `}`, `[`, `]`, `_`, `*`, `-`, `` ` `` 
-
-#### Keywords 
-Keywords are case insensitive:
-
-`Element`, `Elements`, `Property`, `Properties`, `Choice`, `Choices` `One of`, `Include`
-
-#### Reserved Keywords
-Following keywords are reserved for future use:
-
-`Trait`, `Traits`, `Parameter`, `Parameters`, `Attribute`, `Attributes`, `Filter`, `Validation`
+Markdown [code span][] element syntax (`` ` ` ``) is used to escape names and literals when needed.
 
 #### MSON
 
@@ -404,7 +369,7 @@ In the case where one-liner description is not enough a mutli-paragraph list ite
 - tags: home, green (array)
 ```
 
-For multi-line description of an array or object the `Elements` or `Properties` keyword is needed to avoid any possible clash with potential description list items: 
+For multi-line description of an compound type a `Elements`, `Properties` or `Members` keyword is needed to avoid any possible clash with potential description list items: 
 
 ```
 - tags (array)
@@ -482,8 +447,8 @@ Additionally a variable property name can specify its key type:
 
 ---
 
-## MSON Entity Definition
-Top-level, MSON entity definition that can be referenced, is defined using a Markdown header. A form of markdown headed is also used for entity-level keywords:
+## Type Definition
+Additional Named types can be defined using a Markdown header:
 
 #### MSON 
 
@@ -561,24 +526,6 @@ Consider following JSON:
 
 ---
 
-However both `[]()` and `[][]` [Markdown syntax](http://daringfireball.net/projects/markdown/syntax#link) are supported:
-
-#### MSON
-
-```
-# User (object)
-- fist_name 
-- last_name
-- address ([Address](#address-object))
-```
-
-```
-# User (object)
-- fist_name 
-- last_name
-- address ([Address][])
-```
-
 ## Mixins
 To include (mixin) object properties in another object use the `Include` keyword followed by a reference to the object MSON entity.
 
@@ -606,7 +553,7 @@ To include (mixin) object properties in another object use the `Include` keyword
 # User Object
 - fist_name 
 - last_name
-- Include [Address]()
+- Include Address
 ```
 
 #### Rendered Markdown
@@ -620,7 +567,7 @@ To include (mixin) object properties in another object use the `Include` keyword
 ##### User Object
 - fist_name 
 - last_name
-- Include [Address]()
+- Include Address
 
 ---
 
@@ -628,3 +575,4 @@ To include (mixin) object properties in another object use the `Include` keyword
 [code span]: http://daringfireball.net/projects/markdown/syntax#code
 [@zdne]: https://github.com/zdne
 [Apiary]: http://apiary.io
+[MSON Language Specification]: MSON%20Specification.md
