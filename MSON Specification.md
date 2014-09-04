@@ -1,18 +1,18 @@
 # MSON Specification
-Markdown Syntax for Object Notation is a plain text syntax for describing and validation of data structures. 
+Markdown Syntax for Object Notation (MSON) is a plain text syntax for the description and validation of data structures.
 
 In MSON, data structures are described as compound types. Elements of these compound types can be themselves instances of other types.
 
 ## How to Read the Grammar
 - An arrow (→) is used to mark grammar productions and can be read as "can consist of".
 - Syntactic categories are indicated by _italic_ text
-- Literal words and punctuactions are indicated by a `code span`
+- Literal words and punctuations are indicated by a `code span`
 - Alternative grammar productions are separated by vertical bars (|)
 - Optional syntactic categories and literals are marked by _[italic text in square brackets]_
-- Grammar production can span several lines, grammar production ends at another grammar production and / or end of paragraph.
+- Grammar production can span several lines and ends at another grammar production and/or the end of a paragraph.
 
 ## Markdown Syntax
-Note this reference is using ATX-style headers (#) and hyphens-style lists (-) exclusively. However you MAY use Setext-style headers and / or asterisk (*) or pluses (+) style list if you prefer.
+Note this reference is using ATX-style headers (#) and hyphens-style lists (-) exclusively. However you MAY use Setext-style headers and/or asterisk (*) or pluses (+) style list if you prefer.
 
 ## Types
 
@@ -63,13 +63,13 @@ Array Item Element – one item in an array.
 _Item Element_ → _[Type Instance]()_
 
 ### Property Element
-Object Property Element - one property (attribute) of an object. _Property Name_ is a fully-fledged _Type Instances_.
+Object Property Element - one property (attribute) of an object. _Property Name_ is a fully-fledged _Type Instance_.
 
 _Property Element_ → _[Property Name]()_ `:` _[Type Instance]()_ _[opt]_
 _Property Name_ → [Literal Value]() | _[Type Instance]()_
 
 ### Member Element
-Enumeration Member Element - one member of an enumeration. Enumeration _Memeber Value_ is a fully-fledged _Type Instances_.
+Enumeration Member Element - one member of an enumeration. Enumeration _Member Value_ is a fully-fledged _Type Instance_.
 
 _Member Element_ → _[Member Value]()_ `:` _[Type Instance]()_ _[opt]_
 _Member Value_ → [Literal Value]() | _[Type Instance]()_
@@ -77,12 +77,12 @@ _Member Value_ → [Literal Value]() | _[Type Instance]()_
 ### Element Mixin
 Mixin Element is a special type of _Element_ that adds _Elements_ from another compound type to the parent's _Elements_. The source and destination MUST be of the same compound type.
 
-_Element Element_ → `- Include` _[Type Name]()_
+_Element Mixin_ → `- Include` _[Type Name]()_
 
 ### Type Instance
 Define an instance of a type.
 
-A _Type Instance_ definition MUST include _Value_ or _Type Annotation_. A _Type Instances_ of the `Object` or `Enumeration` base type MUST NOT specify a value.  A _Value_ of an instance of unspecified type MAY imply the type of the instance.
+A _Type Instance_ definition MUST include _Value_ or _Type Annotation_. _Type Instances_ of the `Object` or `Enumeration` base type MUST NOT specify a value.  A _Value_ of an instance of unspecified type MAY imply the type of the instance.
 
 _Type Instance_ → _[Value]()_ _[opt]_ _[Type Annotation]()_ _[opt]_ `-` _[Description]()_ _[opt]_
 
