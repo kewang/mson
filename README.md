@@ -5,16 +5,16 @@ This document is a proposal of Markdown syntax for JSON & JSON Schema.
 MSON is a plain text, human and machine readable, description format for common markup formats such as JSON, XML or YAML.
 
 ## What for?
-The aim of this description format is to facilitate the discussion (and thus validation) of data structures. The format, being agnostic to the common markup formats, suites well the "resource & representations" and "content negotiation" scenarios. 
+The aim of this description format is to facilitate the discussion (and thus validation) of data structures. The format, being agnostic to the common markup formats, is well suited for "resource & representations" and "content negotiation" scenarios.
 
 In addition this format also offers (limited) serialization functionality.
 
-Similarly to the original Markdown to HTML (markup) conversion the Markdown Syntax for Object Notation (hereafter MSON) enables a conversion to other markup formats. 
+Similar to the original Markdown to HTML (markup) conversion, the Markdown Syntax for Object Notation (hereafter MSON) enables conversion to other markup formats.
 
 ## Who & Why? 
-This format is being developed by [@zdne][] at [Apiary][] as a part of [API Blueprint][] syntax to provide a means for description and validation of HTTP payloads, DRY media-type agnostic resource descriptions and to simplify content-negotiation.
+This format is being developed by [@zdne][] at [Apiary][] as a part of the [API Blueprint][] syntax to provide a means for description and validation of HTTP payloads, DRY media-type agnostic resource descriptions and to simplify content-negotiation.
 
-> **NOTE**: While this document focuses primarily on JSON and JSON Schema it MUST be possible to produce an XML or YAML representation from the MSON as well.
+> **NOTE**: While this document focuses primarily on JSON and JSON Schema, it must also allow producing XML or YAML representations from MSON.
 
 ## Example 1
 
@@ -156,7 +156,7 @@ By default, a Markdown list item is considered to be an object property:
     - state
 ```
 
-If a markdown list items are literals (represent array values), the type of parents property must be explicitly set to array:
+If a markdown list's items are literals (represent array values), the type of the parent property must be explicitly set to array:
 
 #### JSON
 ```json
@@ -184,7 +184,7 @@ In this case, the type – `(array)` – can be omitted.
 ## Advanced Objects
 
 ### Non-uniform property
-A Property which value can be of different types is defined of the `enum` compound type:
+A Property whose value can be of different types is defined by the `enum` compound type:
 
 #### JSON
 
@@ -219,7 +219,7 @@ A Property which value can be of different types is defined of the `enum` compou
 ---
 
 ### Mutually exclusive properties
-By default all properties are optional and can be included in the object (any of). If there is a choice of available properties use the `enum`:
+By default, all properties are optional and may or may not be included in the object. If there is a choice of available properties, use the `enum`:
 
 #### JSON
 ```json
@@ -346,7 +346,7 @@ Markdown [code span][] element syntax (`` ` ` ``) is used to escape names and li
 ---
 
 ## Mutliline Description
-In the case where one-liner description is not enough a mutli-paragraph list item is the way to go.
+In the case where a one-liner description is not sufficient, a multi-paragraph list item is the way to go.
 
 #### MSON
 
@@ -369,7 +369,7 @@ In the case where one-liner description is not enough a mutli-paragraph list ite
 - tags: home, green (array)
 ```
 
-For multi-line description of an compound type a `Elements`, `Properties` or `Members` keyword is needed to avoid any possible clash with potential description list items: 
+For a multi-line description of a compound type, an `Elements`, `Properties` or `Members` keyword is needed to avoid any possible conflict with potential description list item values:
 
 ```
 - tags (array)
@@ -400,7 +400,7 @@ Variable property name (key) is defined using braces `{}`. Note a variable prope
 {
     "_links" {
         "self": {
-            "href": "an uri"
+            "href": "a URI"
         }
     }
 }
@@ -411,14 +411,14 @@ Variable property name (key) is defined using braces `{}`. Note a variable prope
 ```
 - _links
     - {self}
-        - href: an uri
+        - href: a URI
 ```
 
 #### Rendered Markdown
 
 - _links
     - {self}
-        - href: an uri
+        - href: a URI
 
 ---
 
@@ -463,7 +463,7 @@ Description is here! Properties to follow.
 ```
 
 #### MSON
-The same entity defined as a content of the `Address` property: 
+The same entity defined as a content of an `Address` property:
 
 ```
 - Address (object)
@@ -478,14 +478,14 @@ The same entity defined as a content of the `Address` property:
 ```
 
 ## Referencing
-Anywhere a type is expected, a top-level MSON entity can be referenced. At its simplest an MSON entity is referenced by its name only.
+Anywhere a type is expected, a top-level MSON entity can be referenced. At its simplest, a MSON entity is referenced by its name only.
 
 Consider following JSON:
 
 #### JSON
 ```json
 {
-    "fist_name": null,
+    "first_name": null,
     "last_name": null,
     "address": {
         "street": null,
@@ -506,7 +506,7 @@ Consider following JSON:
 - zip
 
 # User (object)
-- fist_name 
+- first_name
 - last_name
 - address (Address)
 ```
@@ -520,7 +520,7 @@ Consider following JSON:
 - zip
 
 ##### User (object)
-- fist_name 
+- first_name
 - last_name
 - address (Address)
 
@@ -532,7 +532,7 @@ To include (mixin) object properties in another object use the `Include` keyword
 #### JSON
 ```json
 {
-    "fist_name": null,
+    "first_name": null,
     "last_name": null,
     "street": null,
     "city": null,
@@ -551,7 +551,7 @@ To include (mixin) object properties in another object use the `Include` keyword
 - zip
 
 # User Object
-- fist_name 
+- first_name
 - last_name
 - Include Address
 ```
@@ -565,7 +565,7 @@ To include (mixin) object properties in another object use the `Include` keyword
 - zip
 
 ##### User Object
-- fist_name 
+- first_name
 - last_name
 - Include Address
 
