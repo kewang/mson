@@ -1,4 +1,6 @@
 # Markdown Syntax for Object Notation
+
+[![Join the chat at https://gitter.im/kewangtw/mson](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kewangtw/mson?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 This document provides an introduction to Markdown Syntax for Object Notation (MSON), a Markdown syntax 
 compatible with describing JSON and JSON Schema.
 
